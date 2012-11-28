@@ -1,0 +1,29 @@
+﻿@model NetflixLookup.Models.MovieGridModel
+
+@foreach (var movie in Model.Movies)
+{
+    var isNewRow = Model.Movies.IndexOf(movie) % 4 == 0;
+    var isFirstRow = Model.Movies.IndexOf(movie) == 0;
+    
+    if(isNewRow)
+    { 
+        if(!isFirstRow)
+        {
+            @:</ul></span>
+        }
+        @:<span class="row"><ul class="thumbnails">        
+    }
+
+    <li class="span3">
+    <div class="thumbnail">
+        <img src="@movie.ArtLarge" alt="">
+
+        <div class="caption">
+                <h5>@movie.Name</h5>
+                <p>@movie.ReleaseYear</p>
+                <p><a href="@Url.Action("Comps", "Start", new { movieId = @movie.ID, maxResults = Model.MaxResults, subjectTitle = movie.Name, subjectReleaseYear = movie.ReleaseYear })" class="btn btn-primary compsbtn" movieId="@movie.ID">View comps</a></p>
+        </div>
+
+    </div>
+    </li>
+}

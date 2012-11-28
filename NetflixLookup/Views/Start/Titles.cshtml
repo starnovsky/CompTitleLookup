@@ -1,0 +1,25 @@
+﻿@model NetflixLookup.Models.MovieGridModel
+
+@section foot
+{
+    <script src="~/Scripts/netflix.js" type="text/javascript"></script>
+}
+@section nav
+{
+        <li class="active"><a href="@Url.Action("Index", "Start")">Netflix</a></li>
+        <li><a href="@Url.Action("Index", "Flixter")">Flixter</a></li>
+}
+
+@{
+    ViewBag.Title = "Titles";
+}
+
+<div class="hero-unit">
+  <h1>Matching titles.</h1>
+  <p>Select any title to view comparables.</p>
+</div>
+<div class="row">
+    <span class="span9">
+        @Html.Partial("MovieGrid", Model)
+     </span>
+</div>

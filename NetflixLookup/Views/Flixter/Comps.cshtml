@@ -1,0 +1,38 @@
+﻿@model NetflixLookup.Models.MovieGridModel
+
+@section foot
+{
+    <script type="text/javascript">
+        var g_ApiKey = "@NetflixLookup.Providers.SettingsProvider.FlixterApiKey";
+        var g_MovieID = "@Model.SubjectID";
+        var g_MaxResults = "@Model.MaxResults";
+    </script>
+    <script src="~/Scripts/flixter.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            searchComps(g_MovieID, g_MaxResults);
+        });
+    </script>
+}
+@section nav
+{
+        <li><a href="@Url.Action("Index", "Start")">Netflix</a></li>
+        <li class="active"><a href="@Url.Action("Index", "Flixter")">Flixter</a></li>
+}
+
+@{
+    ViewBag.Title = "Comparable Titles";
+}
+
+<div class="hero-unit">
+  <h1>Flixter: Comparable titles for</h1>
+  <h2>@Model.SubjectTitle (@Model.SubjectReleaseYear)</h2>
+  <p>Select any title to view comparables.</p>
+</div>
+<div class="row">
+    <span class="span9">
+        <div id="movieList"></div>
+     </span>
+</div>
+
+@Html.Partial("MovieTemplate")

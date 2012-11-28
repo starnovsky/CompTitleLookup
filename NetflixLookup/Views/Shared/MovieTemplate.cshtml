@@ -1,0 +1,19 @@
+﻿<script id="movieTemplate" type="text/x-jquery-tmpl"> 
+      <li class="span3">
+        <div class="thumbnail">
+          <img src="${posters.profile}" alt="">
+
+          <div class="caption">
+                    <h5>${title}</h5>
+                    <p>(${year}) ${mpaa_rating}</p>
+                    <p>Th'l release: <b>${release_dates.theater}</b></p>
+                    <p>Critics score: <b>${ratings.critics_score}/100</b></p>
+                    <p>Audience score: <b>${ratings.audience_score}/100</b></p>
+                    <p><a href="http://www.imdb.com/title/tt${imdb_id}/" target="_blank">IMDB</a>
+                    <p><a class="synopsis">Synopsis:</a> <div style="display:none" class="synopsis">${synopsis}</div></p>
+                    <p><a href="/flixter/Comps?movieId=${id}&maxResults=${maxResults}&subjectTitle=${title}&subjectReleaseYear=${year}" class="btn btn-primary compsbtn" movieId="${id}">View comps</a></p>
+          </div>
+
+        </div>
+      </li>
+</script>

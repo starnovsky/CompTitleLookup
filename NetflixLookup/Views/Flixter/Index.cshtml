@@ -1,0 +1,58 @@
+﻿@using NetflixLookup.Providers;
+@model NetflixLookup.Models.TitleSearch
+@{
+    ViewBag.Title = "Index";
+}
+
+@section foot
+{
+    <script type="text/javascript">
+        var g_ApiKey = "@SettingsProvider.FlixterApiKey";
+    </script>
+    <script src="~/Scripts/flixter.js" type="text/javascript"></script>
+}
+
+@section nav
+{
+        <li><a href="@Url.Action("Index", "Start")">Netflix</a></li>
+        <li class="active"><a href="@Url.Action("Index", "Flixter")">Flixter</a></li>
+}
+
+
+<div class="hero-unit">
+  <h1>Flixter title lookup</h1>
+  <p>This example demostrates how Rotten Tomatoes API could be used for movie title lookup and to pull comp titles.</p>
+  <p>Enter the title name to search for.</p>
+</div>
+<div class="row">
+    <span class="span7">
+            @using (Html.BeginForm("Index", "Flixter", FormMethod.Post, new { @class = "form-horizontal" }))
+            { 
+                <legend>Title Lookup</legend>
+                <div class="control-group">
+                    <label class="control-label" for="txtTitle">Title: </label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.TitleName, new { placeholder="Enter title", size="256", id="txtTitle"})
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="txtMaxResults">Max results: </label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.MaxResults, new { id = "txtMaxResults" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <a class="btn" type="button" id="btnTitleLookup">Lookup</a>
+                    </div>
+                </div>
+        }
+     </span>
+</div>
+<div class="row">
+    <span class="span9">
+        <div id="movieList"></div>
+     </span>
+</div>
+
+@Html.Partial("MovieTemplate")
